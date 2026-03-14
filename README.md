@@ -148,8 +148,16 @@ Ahora mismo solo existe `battle.log()`. Tendrías que añadir código en `Battle
 
 **Preguntas:**
 - ¿Qué pasa si añades 5 "suscriptores" más? ¿Cuántas líneas tocarías en `applyDamage()`?
+
+Por cada suscriptor habría que incluir al menos una línea más en `applyDamage()`
+
 - ¿Cómo desacoplar "ejecutar ataque" de "notificar a quien le interese"?
+
+Aplicando el patrón Observer, cuando algo ocurre, notifica a quien le interese. De esta forma no se violaría el SRP y no habría que modificar `applyDamage()` al añadir un nuevo suscriptor.
+
 - ¿Qué patrón permite que varios objetos reaccionen a un evento sin que el emisor los conozca?
+
+Observer
 
 **Pista:** El método `applyDamage` en `BattleService` es el único que sabe cuándo hay daño.
 
