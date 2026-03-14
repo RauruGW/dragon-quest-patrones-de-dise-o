@@ -78,8 +78,16 @@ Ahora necesitas soportar: equipamiento, buffos temporales, clase (guerrero/mago)
 
 **Preguntas:**
 - ¿Qué problema tiene un constructor con muchos parámetros?
+
+Se hace difícil de leer, no sabes que parámetro es cuál.
+
 - ¿Cómo harías para que `new Character(...)` sea legible cuando hay valores por defecto?
+
+Aplicar el patrón Builder.
+
 - ¿Qué patrón permite construir objetos complejos paso a paso?
+
+Builder
 
 **Pista:** Mira cómo se crean los personajes en `BattleService` y en el endpoint `/start/external`.
 

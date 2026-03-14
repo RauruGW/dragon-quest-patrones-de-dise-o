@@ -39,4 +39,22 @@ public class Character {
     public double getHpPercentage() {
         return maxHp > 0 ? (double) currentHp / maxHp * 100 : 0;
     }
+
+    public static class Builder {
+        private String name = "Héroe";
+        private int maxHp = 150;
+        private int attack = 25;
+        private int defense = 15;
+        private int speed = 20;
+
+        public Builder name(String name) { this.name = name; return this; }
+        public Builder maxHp(int maxHp) { this.maxHp = maxHp; return this; }
+        public Builder attack(int attack) { this.attack = attack; return this; }
+        public Builder defense(int defense) { this.defense = defense; return this; }
+        public Builder speed(int speed) { this.speed = speed; return this; }
+
+        public Character build() {
+            return new Character(name, maxHp, attack, defense, speed);
+        }
+    }
 }
