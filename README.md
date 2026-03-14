@@ -33,7 +33,7 @@ src/main/java/com/taller/patrones/
 **Preguntas:**
 - ¿Qué problema te encuentras al añadir "Meteoro"?
 
-Para añadir "Meteoro" tienes que editar el switch de creación en `CombatEngine`, lo que viola el OCP.
+Para añadir "Meteoro" hay que editar el switch de creación en `CombatEngine`, lo que viola el OCP.
 
 - ¿Qué pasa si mañana piden 10 ataques más?
 
@@ -55,7 +55,12 @@ Además, te piden un nuevo tipo: "CRÍTICO", con fórmula `daño * 1.5` y 20% de
 
 **Preguntas:**
 - ¿Qué principio SOLID se viola al añadir otro `case` en el switch?
+
+OCP
+
 - ¿Qué patrón permitiría tener fórmulas de daño intercambiables sin tocar el código existente?
+
+Strategy
 
 **Pista:** Cada tipo de ataque (NORMAL, SPECIAL, STATUS) tiene una fórmula distinta.
 
