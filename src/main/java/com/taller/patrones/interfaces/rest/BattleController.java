@@ -71,6 +71,31 @@ public class BattleController {
         ));
     }
 
+
+    @PostMapping("/start/external/adapter")
+    public ResponseEntity<Map<String, Object>> startBattleFromExternalWithAdapter(@RequestBody Map<String, Object> body) {
+        ExternalFormatAdapter adapter = new ExternalFormatAdapter();
+        ExternalFormatAdapter.ExternalData data = adapter.adapt(body);
+
+        var result = battleService.startBattleFromExternal(
+                data.fighter1Name(), data.fighter1Hp(), data.fighter1Atk(),
+                data.fighter2Name(), data.fighter2Hp(), data.fighter2Atk()
+        );
+        Battle battle = result.battle();
+
+        return ResponseEntity.ok(Map.of(
+                "battleId", result.battleId(),
+                "player", toCharacterDto(battle.getPlayer()),
+                "enemy", toCharacterDto(battle.getEnemy()),
+                "currentTurn", battle.getCurrentTurn(),
+                "battleLog", battle.getBattleLog(),
+                "finished", battle.isFinished(),
+                "playerAttacks", BattleService.PLAYER_ATTACKS,
+                "lastDamage", 0,
+                "lastDamageTarget", ""
+        ));
+    }
+
     @GetMapping("/{battleId}")
     public ResponseEntity<Map<String, Object>> getBattle(@PathVariable String battleId) {
         Battle battle = battleService.getBattle(battleId);

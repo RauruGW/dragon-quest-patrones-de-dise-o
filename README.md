@@ -122,8 +122,16 @@ Mañana llega otro proveedor con formato distinto: `player.health`, `player.atta
 
 **Preguntas:**
 - ¿Qué problema hay en poner la lógica de conversión en el controller?
+
+Se viola el SRP, el controller mezclaría adaptar el formato externo y controlar la lógica. Además, si aumenta el número de formatos, el controller crece más.
+
 - ¿Cómo aislar la conversión "formato externo → nuestro dominio" para no ensuciar el controller?
+
+Creando adaptadores que conviertan el formato externo a nuestro modelo interno.
+
 - ¿Qué patrón permite que un objeto "adaptado" se use como si fuera uno de los nuestros?
+
+Adapter
 
 **Pista:** `interfaces/rest/BattleController.java` — método `startBattleFromExternal`
 
