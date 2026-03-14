@@ -32,8 +32,16 @@ src/main/java/com/taller/patrones/
 
 **Preguntas:**
 - ¿Qué problema te encuentras al añadir "Meteoro"?
+
+Para añadir "Meteoro" tienes que editar el switch de creación en `CombatEngine`, lo que viola el OCP.
+
 - ¿Qué pasa si mañana piden 10 ataques más?
+
+El switch de `createAttack()` se vuelve largo y más propenso a errores.
+
 - ¿Qué patrón permitiría añadir ataques **sin modificar** `CombatEngine`?
+
+Factory
 
 **Pista:** Busca en `infrastructure/combat/CombatEngine.java`
 
