@@ -28,6 +28,10 @@ public class Character {
     public int getDefense() { return defense; }
     public int getSpeed() { return speed; }
 
+    public void setCurrentHp(int hp) {
+        this.currentHp = Math.max(0, Math.min(maxHp, hp));
+    }
+
     public void takeDamage(int damage) {
         this.currentHp = Math.max(0, currentHp - damage);
     }

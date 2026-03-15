@@ -171,8 +171,16 @@ Ahora el ataque se ejecuta directamente en `applyDamage()`. No hay registro de "
 
 **Preguntas:**
 - ¿Qué tendrías que cambiar para poder "deshacer"?
+
+Habría que encapsular cada ataque en un objeto que sepa cómo revertirse.
+
 - ¿Cómo encapsular una acción (ataque) para poder ejecutarla, guardarla y revertirla?
+
+Utilizando el patrón Command. Creamos una nueva clase que encapsule la acción y permita revertirla.
+
 - ¿Qué patrón trata las acciones como objetos de primera clase?
+
+Command
 
 **Pista:** La lógica del ataque está en `BattleService.applyDamage()`.
 

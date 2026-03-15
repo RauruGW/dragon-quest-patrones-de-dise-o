@@ -4,6 +4,7 @@ import com.taller.patrones.domain.Attack;
 import com.taller.patrones.domain.Battle;
 import com.taller.patrones.domain.Character;
 import com.taller.patrones.infrastructure.combat.CombatEngine;
+import com.taller.patrones.infrastructure.command.AttackCommand;
 import com.taller.patrones.infrastructure.observer.AnalyticsObserver;
 import com.taller.patrones.infrastructure.observer.BattleLogObserver;
 import com.taller.patrones.infrastructure.observer.DamageEventPublisher;
@@ -79,17 +80,20 @@ public class BattleService {
     }
 
     private void applyDamage(Battle battle, Character attacker, Character defender, int damage, Attack attack) {
-        defender.takeDamage(damage);
-        String target = defender == battle.getPlayer() ? "player" : "enemy";
-        battle.setLastDamage(damage, target);
+        AttackCommand command = new AttackCommand(battle, attacker, defender, attack, damage);
+        battle.executeAttackCommand(command);
 
         DamageEventPublisher.publish(battle, attacker, defender, damage, attack);
 
-        battle.switchTurn();
-        if (!defender.isAlive()) {
-            battle.finish(attacker.getName());
+    }
+
+    public void undoLastAction(String battleId) {
+        Battle battle = battleRepository.findById(battleId);
+        if (battle != null) {
+            battle.undoLastAction();
         }
     }
+
 
     public BattleStartResult startBattleFromExternal(String fighter1Name, int fighter1Hp, int fighter1Atk,
                                                      String fighter2Name, int fighter2Hp, int fighter2Atk) {

@@ -157,4 +157,14 @@ public class BattleController {
                 "alive", c.isAlive()
         );
     }
+
+    @PostMapping("/{battleId}/undo")
+    public ResponseEntity<Map<String, Object>> undoLastAction(@PathVariable String battleId) {
+        Battle battle = battleService.getBattle(battleId);
+        if (battle == null) return ResponseEntity.notFound().build();
+
+        battleService.undoLastAction(battleId);
+
+        return ResponseEntity.ok(toBattleDto(battleService.getBattle(battleId)));  
+    }
 }
