@@ -192,7 +192,12 @@ Command
 
 **Preguntas:**
 - ¿Qué problema hay en exponer muchos detalles internos a quien solo quiere "hacer un ataque"?
+
+El cliente externo tendría que conocer sobre cosas que no son su responsabilidad. Acoplamiento innecesario y mayor complejidad.
+
 - ¿Qué patrón ofrece una interfaz simple que oculta la complejidad del subsistema?
+
+Facade
 
 **Pista:** Piensa en qué necesita saber un cliente para ejecutar un ataque.
 
